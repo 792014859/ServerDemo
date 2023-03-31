@@ -1,0 +1,80 @@
+﻿  正在验证源
+  正在将源远程复制到“192.168.182.130”
+  正在验证体系结构
+  正在验证体系结构
+  正在启动远程生成
+  正在编译源:
+  Buffer.cpp
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\Buffer.cpp(72,22): warning : conversion to ‘int’ from ‘size_t {aka long unsigned int}’ may alter its value [-Wconversion]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\Buffer.cpp(72,22): warning :      int size = strlen(data);
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\Buffer.cpp(72,22): warning :                 ~~~~~~^~~~~~
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\Buffer.cpp(94,23): warning : conversion to ‘int’ from ‘ssize_t {aka long int}’ may alter its value [-Wconversion]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\Buffer.cpp(94,23): warning :      int result = readv(fd, vec, 2);
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\Buffer.cpp(94,23): warning :                   ~~~~~^~~~~~~~~~~~
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\Buffer.cpp(124,25): warning : conversion to ‘int’ from ‘ssize_t {aka long int}’ may alter its value [-Wconversion]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\Buffer.cpp(124,25): warning :          int count = send(socket, m_data + m_readPos, readable, MSG_NOSIGNAL);
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\Buffer.cpp(124,25): warning :                      ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Channel.cpp
+  Dispatcher.cpp
+  EpollDispatcher.cpp
+  EventLoop.cpp
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\EventLoop.cpp(147,6): warning : ignoring return value of ‘ssize_t read(int, void*, size_t)’, declared with attribute warn_unused_result [-Wunused-result]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\EventLoop.cpp(147,6): warning :   read(m_socketPair[1], buf, sizeof(buf));
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\EventLoop.cpp(147,6): warning :   ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\EventLoop.cpp(162,7): warning : ignoring return value of ‘ssize_t write(int, const void*, size_t)’, declared with attribute warn_unused_result [-Wunused-result]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\EventLoop.cpp(162,7): warning :   write(m_socketPair[0], msg, strlen(msg));
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\EventLoop.cpp(162,7): warning :   ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  HttpRequest.cpp
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(25,24): warning : conversion to ‘int’ from ‘long int’ may alter its value [-Wconversion]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(25,24): warning :      int length = space - start;
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(25,24): warning :                   ~~~~~~^~~~~~~
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(86,24): warning : conversion to ‘int’ from ‘long int’ may alter its value [-Wconversion]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(86,24): warning :      int lineSize = end - start;
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(86,24): warning :                     ~~~~^~~~~~~
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(111,28): warning : conversion to ‘int’ from ‘long int’ may alter its value [-Wconversion]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(111,28): warning :          int lineSize = end - start;
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(111,28): warning :                         ~~~~^~~~~~~
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(116,33): warning : conversion to ‘int’ from ‘long int’ may alter its value [-Wconversion]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(116,33): warning :              int keyLen = middle - start;
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(116,33): warning :                           ~~~~~~~^~~~~~~
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(117,41): warning : conversion to ‘int’ from ‘long int’ may alter its value [-Wconversion]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(117,41): warning :              int valueLen = end - middle - 2;
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(117,41): warning :                             ~~~~~~~~~~~~~^~~
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(248,50): warning : conversion to ‘char’ from ‘int’ may alter its value [-Wconversion]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(248,50): warning :              str.append(1, hexToDec(from[1]) * 16 + hexToDec(from[2]));
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(248,50): warning :                            ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(398,21): warning : conversion to ‘int’ from ‘__off_t {aka long int}’ may alter its value [-Wconversion]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(398,21): warning :      int size = lseek(fd, 0, SEEK_END);
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(398,21): warning :                 ~~~~~^~~~~~~~~~~~~~~~~
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(402,27): warning : conversion to ‘int’ from ‘ssize_t {aka long int}’ may alter its value [-Wconversion]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(402,27): warning :          int ret = sendfile(cfd, fd, &offset, size - offset);
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\HttpRequest.cpp(402,27): warning :                    ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  HttpResponse.cpp
+  main.cpp
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\main.cpp(21,10): warning : ignoring return value of ‘int chdir(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\main.cpp(21,10): warning :      chdir("/home/zxd/luffy");
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\main.cpp(21,10): warning :      ~~~~~^~~~~~~~~~~~~~~~~~~
+  PollDispatcher.cpp
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\PollDispatcher.cpp(33,22): warning : conversion to ‘short int’ from ‘int’ may alter its value [-Wconversion]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\PollDispatcher.cpp(33,22): warning :     m_fds[i].events = events;
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\PollDispatcher.cpp(33,22): warning :                       ^~~~~~
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\PollDispatcher.cpp(75,22): warning : conversion to ‘short int’ from ‘int’ may alter its value [-Wconversion]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\PollDispatcher.cpp(75,22): warning :     m_fds[i].events = events;
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\PollDispatcher.cpp(75,22): warning :                       ^~~~~~
+  SelectDispatcher.cpp
+  TcpConnection.cpp
+  TcpServer.cpp
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\TcpServer.h(20,20): warning : ‘TcpServer::m_port’ will be initialized after [-Wreorder]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\TcpServer.h(20,20): warning :      unsigned short m_port;
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\TcpServer.h(20,20): warning :                     ^~~~~~
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\TcpServer.h(16,9): warning : ‘int TcpServer::m_threadNum’ [-Wreorder]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\TcpServer.h(16,9): warning :      int m_threadNum;
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\TcpServer.h(16,9): warning :          ^~~~~~~~~~~
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\TcpServer.cpp(23,1): warning : when initialized here [-Wreorder]
+  ThreadPool.cpp
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\ThreadPool.cpp(45,11): warning : operation on ‘((ThreadPool*)this)->ThreadPool::m_index’ may be undefined [-Wsequence-point]
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\ThreadPool.cpp(45,11): warning :    m_index = ++m_index % m_threadNum;
+D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\ThreadPool.cpp(45,11): warning :    ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~
+  WorkerThread.cpp
+  正在链接对象
+  ReactorHttp_CPP.vcxproj -> D:\CPP_DEMO\DEMO\ReactorHttpDemo\ReactorHttp_CPP\ReactorHttp_CPP\bin\x64\Release\ReactorHttp_CPP.out
