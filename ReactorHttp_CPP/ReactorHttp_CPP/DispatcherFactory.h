@@ -63,6 +63,7 @@ Dispatcher* getDispatcher(EventLoop* evLoop, int type) {
 		result = factory->createDispatcher(evLoop);
 		break;
 	}
+	if (factory != nullptr) delete factory;
 	return result;
 }
 

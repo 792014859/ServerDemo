@@ -28,11 +28,11 @@ EventLoop::EventLoop(const std::string threadName, const int dispatcherType)
 		perror("socketpair");
 		exit(0);
 	}
-#if 0
+#if 1
 	Channel* channel = new Channel(m_socketPair[1], FDEvent::ReadEvent, readLocalMessage, nullptr, nullptr, this);
 #else 
 	auto obj = bind(&EventLoop::readMessage, this);
-	Channel* channel = new Channel(m_socketPair[1], FDEvent::ReadEvent, obj, nullptr, nullptr, this);
+	Channel* channel = new Channel(m_socketPair[1], FDEvent::ReadEvent, obj, nullptr, nullptr, nullptr);
 #endif
 	//channel添加到任务队列
 	addTask(channel, ElemType::ADD);
@@ -40,6 +40,10 @@ EventLoop::EventLoop(const std::string threadName, const int dispatcherType)
 
 EventLoop::~EventLoop()
 {
+	if (m_dispatcher != nullptr) {
+		delete m_dispatcher;
+		m_dispatcher = nullptr;
+	}
 }
 
 int EventLoop::run()
@@ -148,13 +152,13 @@ int EventLoop::readMessage()
 	return 0;
 }
 
-//int EventLoop::readLocalMessage(void* arg)
-//{
-//	EventLoop* evloop = static_cast<EventLoop*>(arg);
-//	char buf[256];
-//	read(evloop->m_socketPair[1], buf, sizeof(buf));
-//	return 0;
-//}
+int EventLoop::readLocalMessage(void* arg)
+{
+	EventLoop* evloop = static_cast<EventLoop*>(arg);
+	char buf[256];
+	read(evloop->m_socketPair[1], buf, sizeof(buf));
+	return 0;
+}
 
 void EventLoop::taskWakeup()
 {

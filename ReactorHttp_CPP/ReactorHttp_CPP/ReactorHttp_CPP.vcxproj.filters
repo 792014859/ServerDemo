@@ -5,9 +5,6 @@
     <ClCompile Include="Channel.cpp">
       <Filter>Channel</Filter>
     </ClCompile>
-    <ClCompile Include="Dispatcher.cpp">
-      <Filter>Dispatcher</Filter>
-    </ClCompile>
     <ClCompile Include="EventLoop.cpp">
       <Filter>EventLoop</Filter>
     </ClCompile>

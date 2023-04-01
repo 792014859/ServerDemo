@@ -14,12 +14,12 @@ public:
 private:
 	//指向主反应堆实例
 	EventLoop* m_mainloop;
+	//存放子线程
+	std::vector<WorkerThread*> m_workerThreads;
 	//标记线程池是否启动
 	bool m_isStart;
 	//线程池中子线程个数
 	int m_threadNum;
-	//存放子线程
-	std::vector<WorkerThread*> m_workerThreads;
 	//用于标记从那个子线程中取出反应堆实例，对应m_workerThreads的下标
 	int m_index;
 };

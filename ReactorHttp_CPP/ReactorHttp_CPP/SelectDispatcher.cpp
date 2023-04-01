@@ -13,21 +13,21 @@ SelectDispatcher::~SelectDispatcher()
 {
 }
 
-int SelectDispatcher::add(Channel*& channel)
+int SelectDispatcher::add(Channel* channel)
 {
     if (channel->getSocket() >= m_maxSize) return -1;
     setFdSet(channel);
     return 0;
 }
 
-int SelectDispatcher::remove(Channel*& channel)
+int SelectDispatcher::remove(Channel* channel)
 {
     clearFdSet(channel);
     channel->destroyCallback(const_cast<void*>(channel->getArg()));
     return 0;
 }
 
-int SelectDispatcher::modify(Channel*& channel)
+int SelectDispatcher::modify(Channel* channel)
 {
     clearFdSet(channel);
     setFdSet(channel);
@@ -57,7 +57,7 @@ int SelectDispatcher::dispatch(int timeout)
     return 0;
 }
 
-void SelectDispatcher::setFdSet(Channel*& channel)
+void SelectDispatcher::setFdSet(Channel* channel)
 {
     if (channel->getEvent() & static_cast<int>(FDEvent::ReadEvent))
     {
@@ -69,7 +69,7 @@ void SelectDispatcher::setFdSet(Channel*& channel)
     }
 }
 
-void SelectDispatcher::clearFdSet(Channel*& channel)
+void SelectDispatcher::clearFdSet(Channel* channel)
 {
     if (channel->getEvent() & static_cast<int>(FDEvent::ReadEvent))
     {

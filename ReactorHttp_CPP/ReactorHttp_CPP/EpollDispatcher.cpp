@@ -21,7 +21,7 @@ EpollDispatcher::~EpollDispatcher()
     delete[]m_events;
 }
 
-int EpollDispatcher::add(Channel*& channel)
+int EpollDispatcher::add(Channel* channel)
 {
     int ret = epollCtl(channel, EPOLL_CTL_ADD);
     if (ret == -1) {
@@ -31,7 +31,7 @@ int EpollDispatcher::add(Channel*& channel)
     return ret;
 }
 
-int EpollDispatcher::remove(Channel*& channel)
+int EpollDispatcher::remove(Channel* channel)
 {
     int ret = epollCtl(channel, EPOLL_CTL_DEL);
     if (ret == -1) {
@@ -43,7 +43,7 @@ int EpollDispatcher::remove(Channel*& channel)
     return ret;
 }
 
-int EpollDispatcher::modify(Channel*& channel)
+int EpollDispatcher::modify(Channel* channel)
 {
     int ret = epollCtl(channel, EPOLL_CTL_MOD);
     if (ret == -1) {
@@ -55,7 +55,7 @@ int EpollDispatcher::modify(Channel*& channel)
 
 int EpollDispatcher::dispatch(int timeout)
 {
-    int count = epoll_wait(m_epfd, m_events, m_maxNode, -1);
+    int count = epoll_wait(m_epfd, m_events, m_maxNode, timeout * 1000);
     for (int i = 0; i < count; ++i) {
         int events = m_events[i].events;
         int fd = m_events[i].data.fd;
@@ -73,7 +73,7 @@ int EpollDispatcher::dispatch(int timeout)
     return 0;
 }
 
-int EpollDispatcher::epollCtl(Channel*& channel, int op)
+int EpollDispatcher::epollCtl(Channel* channel, int op)
 {
     struct epoll_event ev;
     ev.data.fd = channel->getSocket();

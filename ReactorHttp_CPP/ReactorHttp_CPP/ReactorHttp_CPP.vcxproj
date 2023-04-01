@@ -77,7 +77,6 @@
   <ItemGroup>
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="Channel.cpp" />
-    <ClCompile Include="Dispatcher.cpp" />
     <ClCompile Include="EpollDispatcher.cpp" />
     <ClCompile Include="EventLoop.cpp" />
     <ClCompile Include="HttpRequest.cpp" />

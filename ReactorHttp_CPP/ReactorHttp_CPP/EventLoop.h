@@ -37,7 +37,7 @@ public:
 	//处理任务队列中的任务
 	int processTaskQ();
 
-	//处理dispatcher中的节点
+	//处理任务队里中的节点，根据节点中的事件类型将其从dispatcher检测事件中添加/删除/修改
 	int add(Channel* channel);
 	int remove(Channel* channel);
 	int modify(Channel* channel);
@@ -51,7 +51,7 @@ public:
 
 	inline std::string getThreadName() { return m_threadName; }
 
-	//static int readLocalMessage(void* arg);
+	static int readLocalMessage(void* arg);
 
 private:
 	void taskWakeup();

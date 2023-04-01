@@ -12,6 +12,7 @@
 #include <assert.h>
 #include <ctype.h>
 #include <sys/sendfile.h>
+#include <memory>
 
 //start:字符串开始位置 end:字符串结束位置 sub:要查找的字符串 callback:回调函数，这里是填充请求行中的方法，url以及版本
 char* HttpRequest::splitRequestLine(const char* start, const char* end, const char* sub, function<void(string)> callback)
@@ -212,8 +213,6 @@ bool HttpRequest::processHttpRequest(HttpResponse* response)
     if (S_ISDIR(st.st_mode))
     {
         // 把这个目录中的内容发送给客户端
-        //sendHeadMsg(cfd, 200, "OK", getFileType(".html"), -1);
-        //sendDir(file, cfd);
         // 响应头
         response->addHeader("Content-type", getFileType(".html"));
         response->sendDataFunc = sendDir;
@@ -221,8 +220,6 @@ bool HttpRequest::processHttpRequest(HttpResponse* response)
     else
     {
         // 把文件的内容发送给客户端
-        //sendHeadMsg(cfd, 200, "OK", getFileType(file), st.st_size);
-        //sendFile(file, cfd);
         // 响应头
         response->addHeader("Content-type", getFileType(file));
         response->addHeader("Content-length", to_string(st.st_size));
@@ -323,7 +320,8 @@ const string HttpRequest::getFileType(const string name)
 
 void HttpRequest::sendDir(string dirName, Buffer* sendBuf, int cfd)
 {
-    char buf[4096] = { 0 };
+    char buf[4096];
+    memset(buf, 0, sizeof(buf));
     sprintf(buf, "<html><head><title>%s</title></head><body><table>", dirName.data());
     struct dirent** namelist;
     int num = scandir(dirName.data(), &namelist, NULL, alphasort);
@@ -348,7 +346,6 @@ void HttpRequest::sendDir(string dirName, Buffer* sendBuf, int cfd)
                 "<tr><td><a href=\"%s\">%s</a></td><td>%ld</td></tr>",
                 name, name, st.st_size);
         }
-        // send(cfd, buf, strlen(buf), 0);
         sendBuf->appendString(buf);
 #ifndef MSG_SEND_AUTO
         sendBuf->sendData(cfd);
@@ -357,12 +354,12 @@ void HttpRequest::sendDir(string dirName, Buffer* sendBuf, int cfd)
         free(namelist[i]);
     }
     sprintf(buf, "</table></body></html>");
-    // send(cfd, buf, strlen(buf), 0);
     sendBuf->appendString(buf);
 #ifndef MSG_SEND_AUTO
     sendBuf->sendData(cfd);
 #endif
-    free(namelist);
+    if (num > 0) free(namelist);
+    
 }
 
 void HttpRequest::sendFile(string fileName, Buffer* sendBuf, int cfd)
@@ -377,7 +374,6 @@ void HttpRequest::sendFile(string fileName, Buffer* sendBuf, int cfd)
         int len = read(fd, buf, sizeof buf);
         if (len > 0)
         {
-            // send(cfd, buf, len, 0);
             sendBuf->appendString(buf, len);
 #ifndef MSG_SEND_AUTO
             sendBuf->sendData(cfd);

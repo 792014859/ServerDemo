@@ -18,7 +18,7 @@ PollDispatcher::~PollDispatcher()
 	delete[] m_fds;
 }
 
-int PollDispatcher::add(Channel*& channel)
+int PollDispatcher::add(Channel* channel)
 {
 	int events = 0;
 	if (channel->getEvent() & static_cast<int>(FDEvent::ReadEvent)) {
@@ -40,7 +40,7 @@ int PollDispatcher::add(Channel*& channel)
 	return 0;
 }
 
-int PollDispatcher::remove(Channel*& channel)
+int PollDispatcher::remove(Channel* channel)
 {
 	int i = 0;
 	for (; i < m_maxNode; ++i) {
@@ -58,7 +58,7 @@ int PollDispatcher::remove(Channel*& channel)
 	return 0;
 }
 
-int PollDispatcher::modify(Channel*& channel)
+int PollDispatcher::modify(Channel* channel)
 {
 	int events = 0;
 	if (channel->getEvent() & static_cast<int>(FDEvent::ReadEvent)) {

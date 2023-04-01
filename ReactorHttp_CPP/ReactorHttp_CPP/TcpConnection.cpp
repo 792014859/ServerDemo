@@ -54,11 +54,6 @@ int TcpConnection::processWrite(void* arg)
         // 判断数据是否被全部发送出去了
         if (conn->m_writeBuf->readableSize() == 0)
         {
-            // 1. 不再检测写事件 -- 修改channel中保存的事件
-            //conn->m_channel->writeEventEnable(false);
-            // 2. 修改dispatcher检测的集合 -- 添加任务节点
-            //conn->m_evLoop->addTask(conn->m_channel, ElemType::MODIFY);
-            // 3. 删除这个节点
             conn->m_evLoop->addTask(conn->m_channel, ElemType::DELETE);
         }
     }
@@ -90,7 +85,7 @@ TcpConnection::TcpConnection(int fd, EventLoop* evloop)
 
 TcpConnection::~TcpConnection()
 {
-    if (m_readBuf && m_readBuf->readableSize() == 0 &&
+    /*if (m_readBuf && m_readBuf->readableSize() == 0 &&
         m_writeBuf && m_writeBuf->readableSize() == 0)
     {
         delete m_readBuf;
@@ -98,6 +93,23 @@ TcpConnection::~TcpConnection()
         delete m_request;
         delete m_response;
         m_evLoop->freeChannel(m_channel);
+    }*/
+    if (m_readBuf) {
+        delete m_readBuf;
+        m_readBuf = nullptr;
     }
+    if (m_writeBuf) {
+        delete m_writeBuf;
+        m_writeBuf = nullptr;
+    }
+    if (m_request) {
+        delete m_request;
+        m_request = nullptr;
+    }
+    if (m_response) {
+        delete m_response;
+        m_response = nullptr;
+    }
+    m_evLoop->freeChannel(m_channel);
     Debug("连接断开, 释放资源, gameover, connName: %s", m_name.data());
 }

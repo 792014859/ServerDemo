@@ -5,6 +5,10 @@
 #include <stdlib.h>
 #include "Log.h"
 #include <iostream>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 using namespace std;
 
@@ -13,10 +17,19 @@ int TcpServer::acceptConnection(void* arg)
     TcpServer* server = static_cast<TcpServer*>(arg);
     // 和客户端建立连接
     int cfd = accept(server->m_lfd, NULL, NULL);
-    // 从线程池中取出一个子线程的反应堆实例, 去处理这个cfd
-    EventLoop* evLoop = server->m_threadPool->takeWorkerEventLoop();
-    // 将cfd放到 TcpConnection中处理
-    new TcpConnection(cfd, evLoop);
+    if (cfd == -1 && errno == EMFILE) {
+        close(server->freeid);
+        server->freeid = accept(server->m_lfd, NULL, NULL);
+        close(server->freeid);
+        server->freeid = open("/dev/null", O_RDONLY | O_CLOEXEC);
+        //perror("accept");
+    }
+    if (cfd > 0) {
+        // 从线程池中取出一个子线程的反应堆实例, 去处理这个cfd
+        EventLoop* evLoop = server->m_threadPool->takeWorkerEventLoop();
+        // 将cfd放到 TcpConnection中处理
+        new TcpConnection(cfd, evLoop);
+    }
     return 0;
 }
 
@@ -27,8 +40,21 @@ TcpServer::TcpServer(const unsigned short port, const int threadNum, const int d
     m_mainLoop = new EventLoop(m_dispatcherType);
     //生成线程池实例
     m_threadPool = new ThreadPool(m_mainLoop, m_threadNum);
+    freeid = open("/dev/null", O_RDONLY | O_CLOEXEC);
     //设置监听
     setListen();
+}
+
+TcpServer::~TcpServer()
+{
+    if (m_mainLoop != nullptr) {
+        delete m_mainLoop;
+        m_mainLoop = nullptr;
+    }
+    if (m_threadPool != nullptr) {
+        delete m_threadPool;
+        m_threadPool = nullptr;
+    }
 }
 
 void TcpServer::setListen()

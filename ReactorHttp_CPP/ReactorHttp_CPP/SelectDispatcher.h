@@ -12,14 +12,14 @@ class SelectDispatcher :
 public:
     SelectDispatcher(EventLoop* evloop);
     ~SelectDispatcher();
-    int add(Channel*& channel) override;
-    int remove(Channel*& channel) override;
-    int modify(Channel*& channel) override;
+    int add(Channel* channel) override;
+    int remove(Channel* channel) override;
+    int modify(Channel* channel) override;
     int dispatch(int timeout = 2) override;
 
 private:
-    void setFdSet(Channel*& channel);
-    void clearFdSet(Channel*& channel);
+    void setFdSet(Channel* channel);
+    void clearFdSet(Channel* channel);
 
 private:
     fd_set m_readSet;

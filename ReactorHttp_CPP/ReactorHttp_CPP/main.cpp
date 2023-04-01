@@ -3,7 +3,9 @@
 #include <stdlib.h>
 #include <thread>
 #include <iostream>
+#include <memory>
 #include "TcpServer.h"
+
 
 int main(int argc, char* argv[])
 {
@@ -21,11 +23,14 @@ int main(int argc, char* argv[])
     chdir("/home/zxd/luffy");
 #endif
     // 启动服务器
+    
     int threadNums = std::thread::hardware_concurrency();
+    //threadNums = 8;
     //std::cout << "服务器线程数：" << threadNums << std::endl;
     int dispatcherType = 3;
     TcpServer* server = new TcpServer(port, threadNums, dispatcherType);
     server->run();
+
 
     return 0;
 }

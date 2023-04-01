@@ -10,9 +10,9 @@ class PollDispatcher :
 public:
     PollDispatcher(EventLoop* evloop);
     ~PollDispatcher();
-    int add(Channel*& channel) override;
-    int remove(Channel*& channel) override;
-    int modify(Channel*& channel) override;
+    int add(Channel* channel) override;
+    int remove(Channel* channel) override;
+    int modify(Channel* channel) override;
     int dispatch(int timeout = 2) override;
 
 private:
